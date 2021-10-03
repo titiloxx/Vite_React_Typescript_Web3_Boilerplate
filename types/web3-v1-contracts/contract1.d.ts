@@ -6,7 +6,6 @@ import BN from "bn.js";
 import { ContractOptions } from "web3-eth-contract";
 import { EventLog } from "web3-core";
 import { EventEmitter } from "events";
-import { AbiItem } from 'web3-utils'
 import {
   Callback,
   PayableTransactionObject,
@@ -22,9 +21,14 @@ interface EventOptions {
   topics?: string[];
 }
 
+export type Eventoner = ContractEventLog<{
+  log: string;
+  0: string;
+}>;
+
 export interface Contract1 extends BaseContract {
   constructor(
-    jsonInterface: AbiItem[] | AbiItem,
+    jsonInterface: any[],
     address?: string,
     options?: ContractOptions
   ): Contract1;
@@ -36,13 +40,23 @@ export interface Contract1 extends BaseContract {
 
     getContribution(): NonPayableTransactionObject<string>;
 
-    getName(): NonPayableTransactionObject<string>;
+    getName(returing: string): NonPayableTransactionObject<string>;
 
     owner(): NonPayableTransactionObject<string>;
 
     withdraw(): NonPayableTransactionObject<void>;
   };
   events: {
+    Eventoner(cb?: Callback<Eventoner>): EventEmitter;
+    Eventoner(options?: EventOptions, cb?: Callback<Eventoner>): EventEmitter;
+
     allEvents(options?: EventOptions, cb?: Callback<EventLog>): EventEmitter;
   };
+
+  once(event: "Eventoner", cb: Callback<Eventoner>): void;
+  once(
+    event: "Eventoner",
+    options: EventOptions,
+    cb: Callback<Eventoner>
+  ): void;
 }

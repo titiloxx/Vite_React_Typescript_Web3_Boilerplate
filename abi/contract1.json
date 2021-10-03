@@ -5,6 +5,19 @@
 		"type": "constructor"
 	},
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "log",
+				"type": "string"
+			}
+		],
+		"name": "Eventoner",
+		"type": "event"
+	},
+	{
 		"inputs": [],
 		"name": "contribute",
 		"outputs": [],
@@ -44,7 +57,13 @@
 		"type": "function"
 	},
 	{
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "returing",
+				"type": "string"
+			}
+		],
 		"name": "getName",
 		"outputs": [
 			{
@@ -53,7 +72,7 @@
 				"type": "string"
 			}
 		],
-		"stateMutability": "view",
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
